@@ -177,7 +177,7 @@ include $(BUILD_SYSTEM)/device.mk
 
 # A Blaze build needs only the specific product makefiles.
 ifneq ($(BLAZE_BUILD),)
-  all_product_configs := $(shell find device -path "*/$(BLAZE_BUILD)/blaze.mk")
+  all_product_configs := $(shell find device -path "*/*/blaze.mk")
 else
   ifneq ($(strip $(TARGET_BUILD_APPS)),)
   # An unbundled app build needs only the core product makefiles.
