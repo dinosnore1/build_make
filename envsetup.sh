@@ -640,14 +640,13 @@ function lunch()
         # if we can't find a product, try to grab it off the Blaze-AOSP GitHub
         T=$(gettop)
         cd $T > /dev/null
-        vendor/blaze/build/tools/roomservice.py $product
+        if [[ $NO_ROOMSERVICE == true ]]; then
+            echo "Roomservice turned off, type in 'export NO_ROOMSERVICE=false' if you want it back on"
+        else
+            vendor/blaze/build/tools/roomservice.py $product
+        fi
         cd - > /dev/null
         check_product $product
-    else
-        T=$(gettop)
-        cd $T > /dev/null
-        vendor/blaze/build/tools/roomservice.py $product true
-        cd - > /dev/null
     fi
 
     if [ $? -ne 0 ]
